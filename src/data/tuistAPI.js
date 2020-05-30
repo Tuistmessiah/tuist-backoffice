@@ -13,9 +13,18 @@ const SOUND_ENTITY = "sound";
 
 /* Tuno */
 export async function allTunos() {
-  return fetchFromAPI(TUNO_ENTITY, "all", { method: "GET" })
-    .then((content) => content.tunos)
-    .catch((error) => console.error(error));
+  return fetchFromAPI(TUNO_ENTITY, "all", {
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+  })
+    .then((content) => {
+      console.log(content.tunos);
+      return [{ id: 1, first_name: "pedro", last_name: "caetano" }];
+    })
+    .catch((error) => {
+      console.error(error);
+      return [{ id: 1, first_name: "pedro", last_name: "caetano" }];
+    });
 }
 export async function createTuno({ newObj }) {
   const body = JSON.stringify(newObj);
@@ -39,7 +48,10 @@ export async function deleteTuno({ id }) {
 
 /* Sound */
 export async function allSounds() {
-  return fetchFromAPI(SOUND_ENTITY, "all", { method: "GET" })
+  return fetchFromAPI(SOUND_ENTITY, "all", {
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+  })
     .then((content) => content.sounds)
     .catch((error) => console.error(error));
 }
@@ -65,7 +77,10 @@ export async function deleteSound({ id }) {
 
 /* Section */
 export async function allSections() {
-  return fetchFromAPI(SECTION_ENTITY, "all", { method: "GET" })
+  return fetchFromAPI(SECTION_ENTITY, "all", {
+    method: "GET",
+    headers: { "Content-Type": "application/json" },
+  })
     .then((content) => content.sections)
     .catch((error) => console.error(error));
 }
