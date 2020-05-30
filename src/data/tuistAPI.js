@@ -4,12 +4,13 @@ import auth from "./auth.json";
 
 const BASE_URL = auth.API_URL[auth.API_URL.auth_mode];
 const BASIC_TOKEN = auth.basicToken;
-console.log({ BASE_URL });
 const TUNO_ENTITY = "tuno";
 const SECTION_ENTITY = "section";
 const SOUND_ENTITY = "sound";
 
 // - API Endpoints
+
+console.log({ BASE_URL });
 
 /* Tuno */
 export async function allTunos() {
@@ -17,14 +18,8 @@ export async function allTunos() {
     method: "GET",
     headers: { "Content-Type": "application/json" },
   })
-    .then((content) => {
-      console.log(content.tunos);
-      return [{ id: 1, first_name: "pedro", last_name: "caetano" }];
-    })
-    .catch((error) => {
-      console.error(error);
-      return [{ id: 1, first_name: "pedro", last_name: "caetano" }];
-    });
+    .then((content) => content.tunos)
+    .catch((error) => console.error(error));
 }
 export async function createTuno({ newObj }) {
   const body = JSON.stringify(newObj);
